@@ -1,3 +1,7 @@
 # Ambroseus Store
 
-https://d1ppkacqlxjwax.cloudfront.net
+s3 link: http://ambroseus-store-spa-bucket.s3-website-us-east-1.amazonaws.com/
+
+cloudfront distribution link: https://d1ppkacqlxjwax.cloudfront.net/
+
+build & deploy: `yarn cloudfront:build:deploy:nc`
