@@ -46,15 +46,15 @@ class ServerlessPlugin {
     }
     const result = spawnSync(command, args, { shell: true });
     const stdout = result.stdout.toString();
-    const sterr = result.stderr.toString();
+    const stderr = result.stderr.toString();
     if (stdout) {
       this.serverless.cli.log(stdout);
     }
-    if (sterr) {
-      this.serverless.cli.log(sterr);
+    if (stderr) {
+      this.serverless.cli.log(stderr);
     }
 
-    return { stdout, sterr };
+    return { stdout, stderr };
   }
 
   // syncs the `app` directory to the provided bucket
@@ -68,8 +68,8 @@ class ServerlessPlugin {
       `s3://${s3Bucket}/`,
       '--delete',
     ];
-    const { sterr } = this.runAwsCommand(args);
-    if (!sterr) {
+    const { stderr } = this.runAwsCommand(args);
+    if (!stderr) {
       this.serverless.cli.log('Successfully synced to the S3 bucket');
     } else {
       throw new Error('Failed syncing to the S3 bucket');
@@ -133,8 +133,8 @@ class ServerlessPlugin {
         '--paths',
         '"/*"',
       ];
-      const { sterr } = this.runAwsCommand(args);
-      if (!sterr) {
+      const { stderr } = this.runAwsCommand(args);
+      if (!stderr) {
         this.serverless.cli.log('Successfully invalidated CloudFront cache');
       } else {
         throw new Error('Failed invalidating CloudFront cache');
