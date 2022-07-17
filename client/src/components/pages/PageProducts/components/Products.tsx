@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -9,8 +9,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Product } from '~/models/Product'
 import { formatAsPrice } from '~/utils/utils'
 import AddProductToCart from '~/components/AddProductToCart/AddProductToCart'
-// import axios from 'axios';
-// import API_PATHS from "constants/apiPaths";
+import axios from 'axios'
+import API_PATHS from '~/constants/apiPaths'
 import productList from './productList.json'
 
 const useStyles = makeStyles((theme) => ({
@@ -36,9 +36,11 @@ export default function Products() {
   const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
-    // axios.get(`${API_PATHS.bff}/product/available/`)
-    //   .then(res => setProducts(res.data));
-    setProducts(productList)
+    const fetchData = async () => {
+      const response = await axios.get(API_PATHS.products)
+      setProducts(response.data)
+    }
+    fetchData()
   }, [])
 
   return (
