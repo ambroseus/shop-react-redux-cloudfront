@@ -16,20 +16,26 @@ export default function AddProductToCart({ product }: AddProductToCartProps) {
   const cartItems = useSelector(selectCartItems)
   const cartItem = cartItems.find((i: any) => i.product.id === product.id)
 
+  const handleAddToCart = () => dispatch<any>(addToCart(product))
+  const handleRemoveToCart = () => dispatch<any>(removeFromCart(product))
+
   return (
     <>
       {cartItem ? (
         <>
-          <IconButton onClick={() => dispatch<any>(removeFromCart(product))}>
+          <IconButton onClick={handleRemoveToCart}>
             <Remove color="secondary" />
           </IconButton>
           <Typography align="center">{cartItem.count}</Typography>
-          <IconButton onClick={() => dispatch<any>(addToCart(product))}>
+          <IconButton
+            disabled={cartItem.count >= product.count}
+            onClick={handleAddToCart}
+          >
             <Add color="secondary" />
           </IconButton>
         </>
       ) : (
-        <IconButton onClick={() => dispatch<any>(addToCart(product))}>
+        <IconButton disabled={product.count === 0} onClick={handleAddToCart}>
           <CartIcon color="secondary" />
         </IconButton>
       )}

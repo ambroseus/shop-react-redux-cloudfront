@@ -29,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+  stock: {
+    marginTop: theme.spacing(1),
+    fontSize: 'small',
+  },
 }))
 
 export default function Products() {
@@ -58,6 +62,9 @@ export default function Products() {
                 {product.title}
               </Typography>
               <Typography>{formatAsPrice(product.price)}</Typography>
+              <Typography className={classes.stock}>
+                {`On stock: ${product.count}`}
+              </Typography>
             </CardContent>
             <CardActions>
               <AddProductToCart product={product} />

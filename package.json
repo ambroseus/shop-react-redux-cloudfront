@@ -8,7 +8,7 @@
   "scripts": {
     "client:build": "lerna run build --scope 'store-spa' --stream",
     "client:deploy": "sls client deploy --no-config-change --no-policy-change --no-cors-change",
-    "client:deploy:nc": "yarn client:deploy -- --no-confirm",
+    "client:deploy:nc": "yarn client:deploy --no-confirm",
     "client:build:deploy": "yarn run client:build && yarn client:deploy",
     "client:build:deploy:nc": "yarn run client:build && yarn client:deploy:nc",
     "cloudfront:setup": "sls deploy",
