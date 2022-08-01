@@ -17,10 +17,7 @@ export default function PageProductImport() {
   return (
     <div className={classes.content}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <CSVFileImport
-          url={`${API_PATHS.import}/import`}
-          title="Import Products CSV"
-        />
+        <CSVFileImport url={API_PATHS.import} title="Import Products CSV" />
         <Button
           size="small"
           color="primary"
